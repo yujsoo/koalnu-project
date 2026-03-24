@@ -1,5 +1,8 @@
 {
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
+  "rewrites": [
+    {
+      "source": "/rock-paper-scissors-game",
+      "destination": "/rock-paper-scissors-game/index.html"
+    }
   ]
 }
