@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/rock-paper-scissors-game",
+      "destination": "/index.html"
+    }
+  ]
+}
