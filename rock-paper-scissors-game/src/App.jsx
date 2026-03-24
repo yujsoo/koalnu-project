@@ -35,7 +35,7 @@ function App() {
       <h1>가위바위보 게임</h1>
       <div className={'box-group'}>
         <Box title={'나'} item={playerState}/>
-        <Box title={'로봇'}/>
+        <Box title={'컴퓨터'}/>
       </div>
       <div className={'button-group'}>
         <button onClick={() => handleClick('scissors')}>가위</button>
