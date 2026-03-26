@@ -1,7 +1,7 @@
 import person from '../assets/person.png';
 import computer from '../assets/computer.png';
 
-const Box = ({ title, item }) => {
+const Box = ({ title, item, result }) => {
   // 플레이어별 null img
   const nullImg = title === '나' ? person : computer;
 
@@ -9,6 +9,7 @@ const Box = ({ title, item }) => {
     <div className={'box'}>
       <p className={'title'}>{title}</p>
       <img src={item?.img || nullImg} alt={''} className={'img'}/>
+      <p>{result}</p>
     </div>
     )
 }

@@ -12,12 +12,15 @@ import { useState } from 'react';
 
  const choice = {
   scissors: {
+    name: 'scissors',
     img: scissors
   },
   rock: {
+    name: 'rock',
     img: rock
   },
   paper: {
+    name: 'paper',
     img: paper
   }
  }
@@ -25,7 +28,9 @@ import { useState } from 'react';
 function App() {
   // 가위 바위 보 초기 상태: 아무것도 내지 않은 상태 = null
   const [playerState, setPlayerState] = useState(null);
-  const [computerState, setComputerState] = useState(null)
+  const [computerState, setComputerState] = useState(null);
+  const [playerResult, setPlayerResult] = useState('')
+  const [computerResult, setComputerResult] = useState('')
 
   // 사용자가 가위, 바위, 보 버튼 클릭했을때
   const handleClick = (el) => {
@@ -33,6 +38,9 @@ function App() {
 
    let computerChoice = randomChoice();
     setComputerState(computerChoice);
+
+    setPlayerResult(gameResult(choice[el],computerChoice))
+    setComputerResult(gameResult(computerChoice,choice[el]))
   }
 
   const randomChoice = () => {
@@ -46,13 +54,37 @@ function App() {
     return choice[randomKey]; //랜덤 값 최종 도출
   }
 
+  const gameResult = (user, computer) => {
+    if (user.name === computer.name) return 'tie'
+
+    if (user.name === 'rock') {
+      if(computer.name === 'scissors') {
+        return 'win'
+      }else if ( computer.name === 'paper') {
+        return 'lose'
+      }
+    }else if (user.name === 'scissors') {
+      if (computer.name === 'rock') {
+        return 'lose'
+      }else if (computer.name === 'paper'){
+        return 'win'
+      }
+    }else if (user.name === 'paper') {
+     if (computer.name === 'rock') {
+       return 'win'
+     }else if (computer.name === 'scissors'){
+       return 'lose'
+     }
+   }
+  }
+
 
   return (
     <main className={'container'}>
       <h1>가위바위보 게임</h1>
       <div className={'box-group'}>
-        <Box title={'나'} item={playerState}/>
-        <Box title={'컴퓨터'} item={computerState}/>
+        <Box title={'나'} item={playerState} result={playerResult}/>
+        <Box title={'컴퓨터'} item={computerState} result={computerResult}/>
       </div>
       <div className={'button-group'}>
         <button onClick={() => handleClick('scissors')}>가위</button>
