@@ -3,6 +3,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-size: 16px;
 }
 
 h1 {
@@ -12,8 +13,8 @@ h1 {
 /* 컨테이너 */
 .container {
   display: flex;
+  gap: 40px;
   min-height: 100vh;
-  gap: 50px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -22,29 +23,43 @@ h1 {
 .box-group {
   display: flex;
   align-items: center;
-  gap: 100px;
+  gap: 40px;
 }
 
 .box {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 30px 50px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.box.tie {
+  border-color: black;
+}
+.box.win {
+  border-color: green;
+}
+
+.box.lose {
+  border-color: red;
 }
 
 .box .title {
-  padding: 10px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
   color: #fff;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 14px;
   text-align: center;
-  border-radius: 10px;
   background: #000;
   line-height: 1;
 }
 
 .box .img {
-  width: 300px;
-  height: 300px;
+  width: 140px;
+  height: 140px;
 }
 
 .button-group {
@@ -53,15 +68,13 @@ h1 {
 }
 
 .button-group button {
-  height: 44px;
   font-size: 30px;
   border: 0;
-  font-weight: 500;
   background: #fff;
   cursor: pointer;
   transition: all .3s ease;
+}
 
-  &:hover {
-    transform: scale(1.5);
-  }
+.button-group button:hover {
+  transform: scale(1.5);
 }

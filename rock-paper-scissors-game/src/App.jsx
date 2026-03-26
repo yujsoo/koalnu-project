@@ -78,18 +78,28 @@ function App() {
    }
   }
 
+  const reset = () => {
+    setPlayerState (null);
+    setComputerState(null)
+    setPlayerResult('')
+    setComputerResult('')
+  }
+
 
   return (
     <main className={'container'}>
       <h1>가위바위보 게임</h1>
+      <p>아래 버튼을 눌러 가위, 바위, 보 게임을 시작해보세요!</p>
       <div className={'box-group'}>
         <Box title={'나'} item={playerState} result={playerResult}/>
+         VS
         <Box title={'컴퓨터'} item={computerState} result={computerResult}/>
       </div>
       <div className={'button-group'}>
-        <button onClick={() => handleClick('scissors')}>가위</button>
-        <button onClick={() => handleClick('rock')}>바위</button>
-        <button onClick={() => handleClick('paper')}>보</button>
+        <button onClick={() => handleClick('scissors')}>✂️</button>
+        <button onClick={() => handleClick('rock')}>🪨</button>
+        <button onClick={() => handleClick('paper')}>✋🏻</button>
+        <button onClick={() => reset()}>🔄</button>
       </div>
     </main>
   )
