@@ -1,0 +1,27 @@
+body {
+  width: 100%;
+  height: 100vh;
+  background:url(https://vrthumb.imagetoday.co.kr/2010/07/22/trd032tg01475.jpg) no-repeat center;
+  background-size:cover;
+  overflow: hidden;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  width: 400px;
+  padding: 20px;
+  border-radius:20px;
+  background: rgba(255,255,255,0.8);
+}
+
+.button {
+  margin-top: 10px;
+  color:#fff;
+  border:0;
+  padding:8px 8px;
+  background:#000;
+  cursor:pointer;
+}
