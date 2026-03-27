@@ -6,6 +6,13 @@
       "config": {
         "distDir": "dist"
       }
+    },
+    {
+      "src": "weather/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
@@ -16,6 +23,14 @@
     {
       "src": "/rock-paper-scissors-game/(.*)",
       "dest": "rock-paper-scissors-game/dist/$1"
+    },
+    {
+      "src": "/weather",
+      "dest": "weather/dist/index.html"
+    },
+    {
+      "src": "/weather/(.*)",
+      "dest": "weather/dist/$1"
     }
   ]
 }
