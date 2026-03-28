@@ -66,6 +66,7 @@ function App() {
 
 
   useEffect (() => {
+    setLoading(true);
      if (selectedCity === 'Current') {
        getLocation();
      } else {
