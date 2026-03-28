@@ -1,12 +1,24 @@
-const Box = ({ item }) => {
+import clearSkyIcon from '../assets/ic_clear_sky.svg';
 
+const Box = ({ item }) => {
+  console.log(item)
+  const formatted = new Date().toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  });
   return (
-    <div className="box">
-      <p>{item && <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt="weather icon"/>}</p>
-      <p>{item && item.name}</p>
-      <p>{item && item.weather[0].description}</p>
-      <p>최고: {item && item.main.temp_max}°C 최저: {item && item.main.temp_min}°C 체감: {item && item.main.feels_like}°C</p>
-      <p>습도: {item && item.main.humidity}% 풍속: {item && item.wind.speed} m/s</p>
+    <div className={'box'}>
+      <div className={'main-weather'}>
+        <div className='info'>
+          <p className='date'>{formatted}</p>
+          <b className='name'>{item && item.weather[0].description}</b>
+          <b className='temp'>{item && item.main.temp}°C</b>
+        </div>
+        <i className={'icon'}>
+          {item && item.weather[0].description === 'clear sky' && <img src={clearSkyIcon} alt=""/> }
+        </i>
+      </div>
     </div>
   );
 };
