@@ -1,13 +1,15 @@
-const Menu = ({ menu }) => {
-
+const Menu = ({ menu, selectedCity, setSelectedCity }) => {
   return (
-    <ul className={'menu'}>
-      <li className='active'><button>{menu[0]}</button></li>
-      <li><button>{menu[1]}</button></li>
-      <li><button>{menu[2]}</button></li>
-      <li><button>{menu[3]}</button></li>
+    <ul className="menu">
+      {menu.map((el) => (
+        <li key={el} className={selectedCity === el ? 'active' : ''}>
+          <button onClick={() => setSelectedCity(el)}>
+            {el}
+          </button>
+        </li>
+      ))}
     </ul>
-  )
-}
+  );
+};
 
 export default Menu;

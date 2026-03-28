@@ -8,11 +8,16 @@ import Loading from './components/Loading'
 
 // menu
 const menu = ['Current', 'Seoul', 'Tokyo', 'NewYork'];
-
+const cityMap = {
+  Seoul: 'Seoul',
+  Tokyo: 'Tokyo',
+  NewYork: 'New York'
+};
 function App() {
   const [position, setPosition] = useState(null)
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedCity, setSelectedCity] = useState('Current');
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -28,31 +33,58 @@ function App() {
     }
   }
 
-// 학교
   const getWeatherByCurrentLocation = async (lati, long) => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${long}&appid=c3123e76f40546bce398999e12df2c88&units=metric`;
-    let response = await fetch(url);
-    let data = await response.json();
-    setWeather(data);
-    setLoading(false);
-    console.log(data)
+    try {
+      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${long}&appid=c3123e76f40546bce398999e12df2c88&units=metric`;
+      let response = await fetch(url);
+      let data = await response.json();
+
+      setWeather(data);
+      console.log(data)
+      setLoading(false);
+    }catch (error) {
+      console.error(error);
+      setLoading(false)
+    }
   }
 
+  // 다른 도시 클릭시
+  const getWeatherByCity = async (city) => {
+    try {
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c3123e76f40546bce398999e12df2c88&units=metric`;
+      let response = await fetch(url);
+      let data = await response.json();
+
+      setWeather(data);
+      console.log(data)
+      setLoading(false)
+    } catch (error) {
+      console.error(error);
+      setLoading(false)
+    }
+  };
+
+
   useEffect (() => {
-    getLocation()
-  }, []);
+     if (selectedCity === 'Current') {
+       getLocation();
+     } else {
+       getWeatherByCity(cityMap[selectedCity]);
+     }
+  }, [selectedCity]);
+
 
   // 풍속, 습도 데이터
   const items1 = [
     {
       key: 'wind',
       title: '풍속',
-      value: weather?.wind?.speed
+      value: `${weather?.wind?.speed} m/s`
     },
     {
       key: 'humidity',
       title: '습도',
-      value: weather?.main?.humidity
+      value: `${weather?.main?.humidity}%`
     }
   ];
 
@@ -61,17 +93,17 @@ function App() {
     {
       key: 'max',
       title: '최고',
-      value: weather?.main?.temp_max
+      value: `${weather?.main?.temp_max}°C`
     },
     {
       key: 'min',
       title: '최저',
-      value: weather?.main?.temp_min
+      value: `${weather?.main?.temp_min}°C`
     },
     {
       key: 'feels',
       title: '체감',
-      value: weather?.main?.feels_like
+      value: `${weather?.main?.feels_like}°C`
     },
   ];
   /*
@@ -86,7 +118,7 @@ function App() {
     <>
       <div className={'container'}>
         <HomeTitle/>
-        <Menu menu={menu}/>
+        <Menu menu={menu} selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
         <div className={'box-group'}>
           {loading ?
             <div className='loading'><Loading loading={loading}/></div> :
