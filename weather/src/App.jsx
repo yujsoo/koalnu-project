@@ -1,5 +1,4 @@
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import Box from './components/Box'
 
@@ -24,11 +23,12 @@ function App() {
 
 // 학교
   const getWeatherByCurrentLocation = async (lati, long) => {
-setLoading(true);
+    setLoading(true);
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${long}&appid=c3123e76f40546bce398999e12df2c88&units=metric`;
     let response = await fetch(url);
     let data = await response.json();
     setWeather(data);
+    setLoading(false);
     console.log(data)
   }
 

@@ -1,5 +1,3 @@
-import Loading from './Loading';
-
 const Box = ({ item }) => {
 
   return (
