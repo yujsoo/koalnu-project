@@ -1,10 +1,10 @@
 import './App.css';
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import ProductAllPage from "./page/ProductAllPage";
 import ProductDetailPage from "./page/ProductDetailPage";
 import LoginPage from "./page/LoginPage";
 import Header from "./components/Header.jsx";
-
+import {useState} from "react";
 // 1. 전체 상품 페이지, 로그인, 상품 상세 페이지
 // 1-1. 네비게이션 바 만들기
 // 2. 전체 상품 페이지에서는 전체 상품을 볼 수 있다. (ok)
@@ -19,20 +19,43 @@ import Header from "./components/Header.jsx";
 // concious choice 부분도 true이면 보이고 false이면 안보이게 해주세요. (ok)
 // 카드에 마우스를 올려두면 카드가 커지는 hover 이벤트를 만들어 주세요. (ok)
 // 로그인 버튼을 클릭하면 로그인 페이지가 나오게 스스로 도전해보세요! (ok)
-// 로그인 페이지의 디자인을 스스로 해보세요.
+// 로그인 페이지의 디자인을 스스로 해보세요. (ok)
 
 function App() {
+  const [isLogin, setIsLogin] = useState(
+      !!localStorage.getItem('isLogin')
+  );
+
+  const login = (id) => {
+    localStorage.setItem('isLogin', 'true');
+    localStorage.setItem('userId', id);
+    setIsLogin(true);
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    setIsLogin(false);
+  };
 
   return (
       <>
-        <Header/>
+        <Header isLogin={isLogin} logout={logout}/>
         <Routes>
           /* 메인 페이지 */
-          <Route path="/products" element={<ProductAllPage/>}/>
+          <Route path="/" element={<ProductAllPage/>}/>
           /* 상세 페이지 */
-          <Route path="/products/:id" element={<ProductDetailPage/>}/>
-          /* 로그인 페이지 */
-          <Route path="/login" element={<LoginPage/>}/>
+          <Route
+              path="/product/:id"
+              element={
+                isLogin ? <ProductDetailPage/> : <Navigate to="/login"/>
+              }
+          />
+          <Route
+              path="/login"
+              element={
+                isLogin ? <Navigate to="/"/> : <LoginPage login={login}/>
+              }
+          />
         </Routes>
       </>
   )

@@ -1,7 +1,8 @@
 import logo from '../assets/logo.png';
 import {Link} from "react-router-dom";
 
-const Header = () => {
+const Header = ({isLogin, logout}) => {
+
   return (
       <header className={'header'}>
         <div className={'menu'}>
@@ -16,7 +17,11 @@ const Header = () => {
           </nav>
         </div>
         <div className="etc">
-          <Link to={'/login'}>login</Link>
+          {isLogin ? (
+              <button onClick={logout}>logout</button>
+          ) : (
+              <Link to={'/login'}>login</Link>
+          )}
         </div>
       </header>
   )
