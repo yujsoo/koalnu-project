@@ -1,0 +1,95 @@
+.container {
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.card .img > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.card .img {
+  position: relative;
+}
+
+.card .img img {
+  vertical-align: top;
+  width: 100%;
+}
+
+.card .info {
+  padding: 20px;
+}
+
+.card .info .title {
+  font-size: 20px;
+}
+
+.hover-box {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  position: absolute;
+  inset: auto auto 0 0;
+  width: 100%;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  box-sizing: border-box;
+  transition: opacity 0.3s;
+}
+
+.card:hover .hover-box {
+  opacity: 1;
+  visibility: visible;
+}
+
+.size-select {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 18px;
+  border: 2px solid #1a1a1a;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.buttons a {
+  display: flex;
+  flex: 1;
+  place-items: center;
+  height: 40px;
+  justify-content: center;
+  color: #1a1a1a;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid #1a1a1a;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.label {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.new {
+  margin-bottom: 10px;
+  color: red;
+}
+
+.choice {
+  color: #999;
+}
