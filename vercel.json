@@ -13,6 +13,13 @@
       "config": {
         "distDir": "dist"
       }
+    },
+    {
+      "src": "hnm-react-prc/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
@@ -31,6 +38,14 @@
     {
       "src": "/weather/(.*)",
       "dest": "weather/dist/$1"
+    },
+    {
+      "src": "/hnm-react-prc",
+      "dest": "hnm-react-prc/dist/index.html"
+    },
+    {
+      "src": "/hnm-react-prc/(.*)",
+      "dest": "hnm-react-prc/dist/$1"
     }
   ]
 }
