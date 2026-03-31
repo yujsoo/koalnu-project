@@ -1,4 +1,31 @@
-.container {
+
+.header {
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  box-sizing: border-box;
+}
+
+.header h1 {
+  width: 100px;
+  margin-right: 50px;
+}
+
+.header .menu {
+  display: flex;
+  align-items: center;
+}
+
+.header ul {
+  display: inline-flex;
+  gap: 20px;
+}
+
+h1 img {
+  width: 100%;
 }
 
 .list {
@@ -19,9 +46,16 @@
 
 .card .img {
   position: relative;
+  overflow: hidden;
+}
+
+.card .img:hover img {
+  transform: scale(1.1);
 }
 
 .card .img img {
+  transform: scale(1);
+  transition: all .2s ease;
   vertical-align: top;
   width: 100%;
 }
@@ -34,62 +68,50 @@
   font-size: 20px;
 }
 
-.hover-box {
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  position: absolute;
-  inset: auto auto 0 0;
-  width: 100%;
-  padding: 20px;
-  opacity: 0;
-  visibility: hidden;
-  box-sizing: border-box;
-  transition: opacity 0.3s;
-}
-
-.card:hover .hover-box {
-  opacity: 1;
-  visibility: visible;
-}
-
-.size-select {
-  width: 100%;
-  height: 40px;
-  padding: 0 10px;
-  font-size: 18px;
-  border: 2px solid #1a1a1a;
-}
-
-.buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.buttons a {
-  display: flex;
-  flex: 1;
-  place-items: center;
-  height: 40px;
-  justify-content: center;
-  color: #1a1a1a;
-  font-size: 18px;
-  font-weight: bold;
-  border: 2px solid #1a1a1a;
-  background: #fff;
-  box-sizing: border-box;
-}
-
 .label {
-  display: inline-flex;
-  gap: 10px;
+  display: flex;
+  margin-bottom: 10px;
+  gap: 0 10px;
 }
 
 .new {
-  margin-bottom: 10px;
   color: red;
 }
 
 .choice {
   color: #999;
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 100px auto 0;
+  justify-content: center;
+}
+
+.login-box .title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form input {
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid #000;
+}
+
+.form button {
+  height: 50px;
+  border: none;
+  color: #fff;
+  background: #000;
 }
