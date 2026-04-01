@@ -29,7 +29,7 @@ function App() {
   const [productsList, setProductsList] = useState([]);
 
   const getProducts = async () => {
-    let url = 'http://localhost:4000/products';
+    let url = 'https://my-json-server.typicode.com/yujsoo/koalnu-project/hnm-react-prc/products';
     let response = await fetch(url);
     let data = await response.json()
     console.log(data);
