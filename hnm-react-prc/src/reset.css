@@ -31,7 +31,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-  line-height: 1;
+  line-height: 1.5;
 }
 
 ol, ul {
@@ -56,4 +56,10 @@ table {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+button {
+  color: inherit;
+  border: none;
+  background: inherit;
 }

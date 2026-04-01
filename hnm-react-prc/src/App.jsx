@@ -1,10 +1,11 @@
 import './App.css';
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import ProductAllPage from "./page/ProductAllPage";
-import ProductDetailPage from "./page/ProductDetailPage";
 import LoginPage from "./page/LoginPage";
 import Header from "./components/Header.jsx";
-import {useState} from "react";
+import ProductDetailPage from "./page/ProductDetailPage.jsx";
+import LandingPage from "./page/LandingPage.jsx";
+
 // 1. 전체 상품 페이지, 로그인, 상품 상세 페이지
 // 1-1. 네비게이션 바 만들기
 // 2. 전체 상품 페이지에서는 전체 상품을 볼 수 있다. (ok)
@@ -22,40 +23,18 @@ import {useState} from "react";
 // 로그인 페이지의 디자인을 스스로 해보세요. (ok)
 
 function App() {
-  const [isLogin, setIsLogin] = useState(
-      !!localStorage.getItem('isLogin')
-  );
-
-  const login = (id) => {
-    localStorage.setItem('isLogin', 'true');
-    localStorage.setItem('userId', id);
-    setIsLogin(true);
-  };
-
-  const logout = () => {
-    localStorage.clear();
-    setIsLogin(false);
-  };
 
   return (
       <>
-        <Header isLogin={isLogin} logout={logout}/>
+        <Header/>
         <Routes>
-          /* 메인 페이지 */
-          <Route path="/" element={<ProductAllPage/>}/>
+          /* 랜딩 페이지 */
+          <Route index path="/" element={<LandingPage/>}/>
           /* 상세 페이지 */
-          <Route
-              path="/product/:id"
-              element={
-                isLogin ? <ProductDetailPage/> : <Navigate to="/login"/>
-              }
-          />
-          <Route
-              path="/login"
-              element={
-                isLogin ? <Navigate to="/"/> : <LoginPage login={login}/>
-              }
-          />
+          <Route path="/products" element={<ProductAllPage/>}/>
+          <Route path="/products/:id" element={<ProductDetailPage/>}/>
+          /* 로그인 페이지 */
+          <Route path="/login" element={<LoginPage/>}/>
         </Routes>
       </>
   )

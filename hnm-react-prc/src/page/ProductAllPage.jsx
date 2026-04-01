@@ -18,12 +18,14 @@ const ProductAllPage = () => {
   }, [])
 
   return (
-      <ul className='list'>
-        {productsList.map(item => (
-            <ProductCard key={item.id} item={item}/>
-        ))
-        }
-      </ul>
+      <div className={'container'}>
+        <ul className='list'>
+          {productsList.map(item => (
+              <ProductCard key={item.id} item={item}/>
+          ))
+          }
+        </ul>
+      </div>
   )
 }
 
