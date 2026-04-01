@@ -3,8 +3,9 @@ import {Route, Routes} from "react-router-dom";
 import ProductAllPage from "./page/ProductAllPage";
 import LoginPage from "./page/LoginPage";
 import Header from "./components/Header.jsx";
-import ProductDetailPage from "./page/ProductDetailPage.jsx";
 import LandingPage from "./page/LandingPage.jsx";
+import {useState} from "react";
+import PrivateRoute from "./route/PrivateRoute.jsx";
 
 // 1. 전체 상품 페이지, 로그인, 상품 상세 페이지
 // 1-1. 네비게이션 바 만들기
@@ -23,18 +24,21 @@ import LandingPage from "./page/LandingPage.jsx";
 // 로그인 페이지의 디자인을 스스로 해보세요. (ok)
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
       <>
-        <Header/>
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
         <Routes>
           /* 랜딩 페이지 */
           <Route index path="/" element={<LandingPage/>}/>
           /* 상세 페이지 */
           <Route path="/products" element={<ProductAllPage/>}/>
-          <Route path="/products/:id" element={<ProductDetailPage/>}/>
+          <Route path="/products/:id"
+                 element={<PrivateRoute isLoggedIn={isLoggedIn}/>}/>
           /* 로그인 페이지 */
-          <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/login"
+                 element={<LoginPage setIsLoggedIn={setIsLoggedIn}/>}/>
         </Routes>
       </>
   )

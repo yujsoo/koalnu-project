@@ -1,7 +1,18 @@
 import logo from '../assets/logo.svg';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
-const Header = ({}) => {
+const Header = ({isLoggedIn, setIsLoggedIn}) => {
+  const navigate = useNavigate();
+
+  const goLogin = () => {
+    navigate("/login");
+  }
+
+  const goLogout = () => {
+    setIsLoggedIn(false)
+    navigate("/"); // 로그아웃 버튼 클릭시 메인 페이지로 이동
+
+  }
 
   return (
       <header className={'header'}>
@@ -18,7 +29,10 @@ const Header = ({}) => {
           </nav>
         </div>
         <div className="etc">
-          <button>로그인</button>
+          {!isLoggedIn ?
+              <button onClick={goLogin}>로그인</button> :
+              <button onClick={goLogout}>로그아웃</button>
+          }
         </div>
       </header>
   )

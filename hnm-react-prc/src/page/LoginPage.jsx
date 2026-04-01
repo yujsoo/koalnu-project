@@ -1,34 +1,30 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
-const LoginPage = ({login}) => {
-  const [id, setId] = useState("");
-  const [pwd, setPwd] = useState("");
-  const navigate = useNavigate();
-
+const LoginPage = ({setIsLoggedIn}) => {
+  const navigate = useNavigate()
+  // 로그인 버튼 클릭시
   const handleLogin = (e) => {
-    if (id && pwd) {
-      localStorage.setItem('isLogin', true);
-      localStorage.setItem('userId', id);
-      login(id);
-      navigate('/')
-    } else {
-      alert('아이디 또는 비밀번호를 입력하세요.')
-    }
+    e.preventDefault()
+    setIsLoggedIn(true)
+    navigate('/');
   }
 
   return (
       <div className={'login-box'}>
-        <div className={'title'}>로그인</div>
-        <form action="">
+        <div className={'title'}>
+          <strong>로그인</strong>
+          <p>지금 로그인하고 혜택을 받아보세요.</p>
+        </div>
+        <form action="" onSubmit={handleLogin}>
           <div className={'form'}>
             <input type="text" placeholder={'아이디'}
-                   onChange={(e) => setId(e.target.value)}/>
+            />
             <input type="password" placeholder={'비밀번호'}
-                   onChange={(e) => setPwd(e.target.value)}/>
-            <button onClick={handleLogin}>로그인</button>
+            />
+            <button type={'submit'}>로그인</button>
           </div>
         </form>
+        <Link to={'/'} className={'guest-order'}>비회원 주문조회</Link>
       </div>
   )
 }

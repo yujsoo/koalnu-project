@@ -128,15 +128,20 @@ h1 img {
   display: flex;
   flex-direction: column;
   max-width: 400px;
-  margin: 100px auto 0;
+  margin: 200px auto 0;
   justify-content: center;
 }
 
 .login-box .title {
   text-align: center;
-  font-size: 30px;
-  font-weight: bold;
   margin-bottom: 30px;
+  font-size: 20px;
+}
+
+.login-box .title p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
 }
 
 .form {
@@ -146,14 +151,25 @@ h1 img {
 }
 
 .form input {
-  height: 36px;
+  height: 40px;
   padding: 0 14px;
-  border: 1px solid #000;
+  border: 1px solid #eee;
+}
+
+.form input:focus {
+  border-color: #000;
 }
 
 .form button {
-  height: 50px;
+  height: 48px;
   border: none;
   color: #fff;
   background: #000;
+}
+
+.guest-order {
+  margin-top: 50px;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: underline;
 }

@@ -62,4 +62,9 @@ button {
   color: inherit;
   border: none;
   background: inherit;
+  cursor: pointer;
+}
+
+input {
+  outline: none;
 }
