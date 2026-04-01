@@ -45,15 +45,12 @@ function App() {
       <>
         <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
         <Routes>
-          /* 랜딩 페이지 */
           <Route index path="/" element={<LandingPage/>}/>
-          /* 상세 페이지 */
           <Route path="/products"
                  element={<ProductAllPage productsList={productsList}/>}/>
           <Route path="/products/:id"
                  element={<PrivateRoute isLoggedIn={isLoggedIn}
                                         productsList={productsList}/>}/>
-          /* 로그인 페이지 */
           <Route path="/login"
                  element={<LoginPage setIsLoggedIn={setIsLoggedIn}/>}/>
         </Routes>
