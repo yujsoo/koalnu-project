@@ -1,11 +1,11 @@
 import {Link} from "react-router-dom";
 
 const ProductCard = ({item}) => {
+  const price = item.price.toLocaleString();
+
   if (!item) {
     return false;
   }
-
-  const price = item.price.toLocaleString();
 
   return (
       <li className={'card'}>

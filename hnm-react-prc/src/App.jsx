@@ -4,7 +4,7 @@ import ProductAllPage from "./page/ProductAllPage";
 import LoginPage from "./page/LoginPage";
 import Header from "./components/Header.jsx";
 import LandingPage from "./page/LandingPage.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import PrivateRoute from "./route/PrivateRoute.jsx";
 
 // 1. 전체 상품 페이지, 로그인, 상품 상세 페이지
@@ -26,6 +26,21 @@ import PrivateRoute from "./route/PrivateRoute.jsx";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [productsList, setProductsList] = useState([]);
+
+  const getProducts = async () => {
+    let url = 'http://localhost:4000/products';
+    let response = await fetch(url);
+    let data = await response.json()
+    console.log(data);
+    setProductsList(data);
+  }
+
+  useEffect(() => {
+    getProducts();
+
+  }, [])
+
   return (
       <>
         <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
@@ -33,9 +48,11 @@ function App() {
           /* 랜딩 페이지 */
           <Route index path="/" element={<LandingPage/>}/>
           /* 상세 페이지 */
-          <Route path="/products" element={<ProductAllPage/>}/>
+          <Route path="/products"
+                 element={<ProductAllPage productsList={productsList}/>}/>
           <Route path="/products/:id"
-                 element={<PrivateRoute isLoggedIn={isLoggedIn}/>}/>
+                 element={<PrivateRoute isLoggedIn={isLoggedIn}
+                                        productsList={productsList}/>}/>
           /* 로그인 페이지 */
           <Route path="/login"
                  element={<LoginPage setIsLoggedIn={setIsLoggedIn}/>}/>

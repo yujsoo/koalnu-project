@@ -173,3 +173,58 @@ h1 img {
   text-align: center;
   text-decoration: underline;
 }
+
+/* 상품 디테일 카드 */
+.detail-card {
+  display: flex;
+  padding: 0 200px;
+  gap: 50px;
+}
+
+.detail-card .img {
+  width: 50%;
+}
+
+.detail-card .img img {
+  width: 100%;
+}
+
+.detail-card .info {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.detail-card .title {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.detail-card .size {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.detail-card .size button {
+  min-width: 30px;
+  height: 30px;
+  border: 1px solid #eee;
+  text-align: center;
+  transition: border .3s ease;
+}
+
+.detail-card .size button:hover {
+  border-color: #000;
+  color: #fff;
+  background: #000;
+}
+
+.detail-card .desc {
+  margin-top: 40px;
+  max-width: 400px;
+  color: #555;
+  font-size: 15px;
+  word-break: keep-all;
+  white-space: pre-line;
+}
