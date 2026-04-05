@@ -20,6 +20,13 @@
       "config": {
         "distDir": "dist"
       }
+    },
+    {
+      "src": "zustand-counter/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
@@ -46,6 +53,14 @@
     {
       "src": "/hnm-react-prc/(.*)",
       "dest": "hnm-react-prc/dist/$1"
+    },
+    {
+      "src": "/zustand-counter",
+      "dest": "zustand-counter/dist/index.html"
+    },
+    {
+      "src": "/zustand-counter/(.*)",
+      "dest": "zustand-counter/dist/$1"
     }
   ]
 }
