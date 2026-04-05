@@ -1,8 +1,8 @@
 import counterStore from "../stores/counterStore.js";
 
-const CountBox = () => {
+const CounterBox = () => {
   const {count} = counterStore()
-  
+
   return (
       <div className={'box'}>
         <h2>CountBox: {count}</h2>
@@ -10,5 +10,5 @@ const CountBox = () => {
   );
 };
 
-export default CountBox;
+export default CounterBox;
 
