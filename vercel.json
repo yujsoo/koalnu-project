@@ -31,6 +31,9 @@
   ],
   "routes": [
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/weather/assets/(.*)",
       "dest": "weather/dist/assets/$1"
     },
