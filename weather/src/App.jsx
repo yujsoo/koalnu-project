@@ -1,5 +1,5 @@
 import './App.css'
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import HomeTitle from './components/HomeTitle'
 import Menu from './components/Menu'
 import Box from './components/Box'
@@ -13,36 +13,37 @@ const cityMap = {
   Tokyo: 'Tokyo',
   NewYork: 'New York'
 };
+
 function App() {
   const [position, setPosition] = useState(null)
   const [weather, setWeather] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [selectedCity, setSelectedCity] = useState('Current');
 
   const getLocation = () => {
     if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition((position) => {
-         let lati = position.coords.latitude;
-         console.log(lati)
+      navigator.geolocation.getCurrentPosition((position) => {
+        let lati = position.coords.latitude;
+        console.log(lati)
 
-         let long = position.coords.longitude;
-         console.log(long)
-         setPosition({ lati, long });
-         getWeatherByCurrentLocation(lati, long);
-        });
+        let long = position.coords.longitude;
+        console.log(long)
+        setPosition({lati, long});
+        getWeatherByCurrentLocation(lati, long);
+      });
     }
   }
 
   const getWeatherByCurrentLocation = async (lati, long) => {
     try {
       let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${long}&appid=c3123e76f40546bce398999e12df2c88&units=metric`;
+      setLoading(true)
       let response = await fetch(url);
       let data = await response.json();
-
       setWeather(data);
       console.log(data)
       setLoading(false);
-    }catch (error) {
+    } catch (error) {
       console.error(error);
       setLoading(false)
     }
@@ -52,9 +53,9 @@ function App() {
   const getWeatherByCity = async (city) => {
     try {
       let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c3123e76f40546bce398999e12df2c88&units=metric`;
+      setLoading(true)
       let response = await fetch(url);
       let data = await response.json();
-
       setWeather(data);
       console.log(data)
       setLoading(false)
@@ -64,16 +65,13 @@ function App() {
     }
   };
 
-
-  useEffect (() => {
-    setLoading(true);
-     if (selectedCity === 'Current') {
-       getLocation();
-     } else {
-       getWeatherByCity(cityMap[selectedCity]);
-     }
+  useEffect(() => {
+    if (selectedCity === 'Current') {
+      getLocation();
+    } else {
+      getWeatherByCity(cityMap[selectedCity]);
+    }
   }, [selectedCity]);
-
 
   // 풍속, 습도 데이터
   const items1 = [
@@ -116,23 +114,24 @@ function App() {
     6. 처음 사이트에 들어와서 위치 접근 허용을 안했을때 NaN가 아닌 로딩스피너가 나와야한다
   */
   return (
-    <>
-      <div className={'container'}>
-        <HomeTitle/>
-        <Menu menu={menu} selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
-        <div className={'box-group'}>
-          {loading ?
-            <div className='loading'><Loading loading={loading}/></div> :
-            <>
-              <Box item={weather} loading={loading}/>
-              <EtcBox item={items1} loading={loading}/>
-              <EtcBox item={items2} loading={loading}/>
-            </>
-          }
+      <>
+        <div className={'container'}>
+          <HomeTitle/>
+          <Menu menu={menu} selectedCity={selectedCity}
+                setSelectedCity={setSelectedCity}/>
+          <div className={'box-group'}>
+            {loading ?
+                <div className='loading'><Loading loading={loading}/></div> :
+                <>
+                  <Box item={weather} loading={loading}/>
+                  <EtcBox item={items1} loading={loading}/>
+                  <EtcBox item={items2} loading={loading}/>
+                </>
+            }
 
+          </div>
         </div>
-      </div>
-    </>
+      </>
   )
 }
 

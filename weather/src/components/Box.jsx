@@ -16,11 +16,11 @@ const weatherIconMap = {
   'shower rain': showerRainIcon,
   'rain': rainIcon,
   'thunderstorm': thunderstormIcon,
-  'snow':snow,
+  'snow': snow,
   'haze': mist
 };
 
-const Box = ({ item }) => {
+const Box = ({item}) => {
   console.log(item)
 
   const formatted = new Date().toLocaleDateString('en-GB', {
@@ -30,18 +30,19 @@ const Box = ({ item }) => {
   });
 
   return (
-    <div className={'box'}>
-      <div className={'main-weather'}>
-        <div className='info'>
-          <p className='date'>{formatted}</p>
-          <b className='name'>{item && item.weather[0].description}</b>
-          <b className='temp'>{item && item.main.temp}°C</b>
+      <div className={'box'}>
+        <div className={'main-weather'}>
+          <div className='info'>
+            <p className='date'>{formatted}</p>
+            <b className='name'>{item ? item.weather[0].description : ''}</b>
+            <b className='temp'>{item ? item.main.temp : ''} °C</b>
+          </div>
+          <i className="icon">
+            <img src={item && weatherIconMap[item?.weather[0].description]}
+                 alt=""/>
+          </i>
         </div>
-       <i className="icon">
-         <img src={item && weatherIconMap[item?.weather[0].description]} alt=""/>
-       </i>
       </div>
-    </div>
   );
 };
 
