@@ -31,36 +31,36 @@
   ],
   "routes": [
     {
-      "src": "/rock-paper-scissors-game",
-      "dest": "rock-paper-scissors-game/dist/index.html"
-    },
-    {
-      "src": "/rock-paper-scissors-game/(.*)",
-      "dest": "rock-paper-scissors-game/dist/$1"
-    },
-    {
-      "src": "/weather",
-      "dest": "weather/dist/index.html"
+      "src": "/weather/assets/(.*)",
+      "dest": "weather/dist/assets/$1"
     },
     {
       "src": "/weather/(.*)",
-      "dest": "weather/dist/$1"
+      "dest": "weather/dist/index.html"
     },
     {
-      "src": "/hnm-react-prc",
-      "dest": "hnm-react-prc/dist/index.html"
+      "src": "/rock-paper-scissors-game/assets/(.*)",
+      "dest": "rock-paper-scissors-game/dist/assets/$1"
+    },
+    {
+      "src": "/rock-paper-scissors-game/(.*)",
+      "dest": "rock-paper-scissors-game/dist/index.html"
+    },
+    {
+      "src": "/hnm-react-prc/assets/(.*)",
+      "dest": "hnm-react-prc/dist/assets/$1"
     },
     {
       "src": "/hnm-react-prc/(.*)",
-      "dest": "hnm-react-prc/dist/$1"
+      "dest": "hnm-react-prc/dist/index.html"
     },
     {
-      "src": "/zustand-counter",
-      "dest": "zustand-counter/dist/index.html"
+      "src": "/zustand-counter/assets/(.*)",
+      "dest": "zustand-counter/dist/assets/$1"
     },
     {
       "src": "/zustand-counter/(.*)",
-      "dest": "zustand-counter/dist/$1"
+      "dest": "zustand-counter/dist/index.html"
     }
   ]
 }
